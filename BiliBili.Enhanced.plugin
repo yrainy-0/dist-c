@@ -6,7 +6,7 @@
 #!icon = https://github.com/BiliUniverse/Enhanced/raw/main/src/assets/icon_rounded.png
 #!tag = 🪐 BiliUniverse
 #!system = iOS,iPadOS,macOS,tvOS
-#!date = 2026-04-29 16:39:56
+#!date = 2026-05-26 14:57:21
 #!version = 
 #!system_version = 15
 
@@ -19,16 +19,17 @@ Home.Top = input,"消息Top",tag=[首页] 顶栏（右侧）按钮,desc=请选�
 Bottom = input,"home,dynamic,我的Bottom",tag=[底部] 导航栏按钮,desc=请选择启用的底部导航栏按钮，最多6个。
 Region.Switch = switch,true,tag=[分区] 启用此标签页自定义功能,desc=启用后可自定义分区标签页的内容。
 Mine.Switch = switch,true,tag=[我的] 启用此标签页自定义功能,desc=启用后可自定义我的标签页的服务内容。
+Mine.More = input,"407,410,622,1028",tag=[我的] 更多服务,desc=请选择我的标签页更多服务区域展示的内容。
 Mine.iPad.Switch = switch,true,tag=[我的 iPad版] 启用此标签页自定义功能,desc=启用后可自定义iPad版我的标签页的服务内容。
-Storage = select,"Argument","PersistentStore","database",tag=[储存] 配置类型,desc=选择要使用的配置类型。未设置此选项或不通过此选项的旧版本的配置顺序依旧是 PersistentStore (BoxJs) > $argument > database。
+Storage = select,"Argument","PersistentStore","database",tag=[储存] 配置类型,desc=选择要使用的配置类型。默认配置优先级为 argument > PersistentStore (BoxJs) > database；Stash 的 argument 不可用时会回退到 PersistentStore，再回退到 database。
 LogLevel = select,"WARN","OFF","ERROR","INFO","DEBUG","ALL",tag=[调试] 日志等级,desc=选择脚本日志的输出等级，低于所选等级的日志将全部输出。
 
 [Script]
-http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/resource\/show\/tab\/v2\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.resource.show.tab.v2, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.iPad.Switch},{Storage},{LogLevel}]
-http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/account\/mine(\/ipad)?\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.v2.account.mine, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.iPad.Switch},{Storage},{LogLevel}]
-http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.v2.region.index, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.iPad.Switch},{Storage},{LogLevel}]
-http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/channel\/region\/list\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.v2.channel.region.list, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.iPad.Switch},{Storage},{LogLevel}]
-http-response ^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-interface\/v2\/index\/feed requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.xlive.app.interface.v2.index.feed, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.iPad.Switch},{Storage},{LogLevel}]
+http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/resource\/show\/tab\/v2\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.resource.show.tab.v2, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.More},{Mine.iPad.Switch},{Storage},{LogLevel}]
+http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/account\/mine(\/ipad)?\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.v2.account.mine, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.More},{Mine.iPad.Switch},{Storage},{LogLevel}]
+http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.v2.region.index, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.More},{Mine.iPad.Switch},{Storage},{LogLevel}]
+http-response ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/channel\/region\/list\? requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.x.v2.channel.region.list, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.More},{Mine.iPad.Switch},{Storage},{LogLevel}]
+http-response ^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-interface\/v2\/index\/feed requires-body=1, script-path=https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js, tag=📺 BiliBili.Enhanced.xlive.app.interface.v2.index.feed, argument=[{Home.Switch},{Home.Tab},{Home.Tab_default},{Home.Top_left},{Home.Top},{Bottom},{Region.Switch},{Mine.Switch},{Mine.More},{Mine.iPad.Switch},{Storage},{LogLevel}]
 
 [MitM]
 hostname = app.bilibili.com, app.biliapi.net, api.live.bilibili.com

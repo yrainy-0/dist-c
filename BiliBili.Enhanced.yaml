@@ -11,6 +11,7 @@ compat_arguments:
   Bottom: home,dynamic,我的Bottom
   Region.Switch: 'true'
   Mine.Switch: 'true'
+  Mine.More: 407,410,622,1028
   Mine.iPad.Switch: 'true'
   Storage: Argument
   LogLevel: WARN
@@ -78,14 +79,26 @@ compat_arguments_desc: |
   Mine.Switch: [我的] 启用此标签页自定义功能
   启用后可自定义我的标签页的服务内容。
 
+  Mine.More: [我的] 更多服务
+      ├ 407: 联系客服
+      ├ 410: 设置
+      ├ 622: 会员购中心
+      ├ 741: 我的钱包
+      ├ 742: 稿件管理
+      ├ 812: 听视频
+      ├ 950: 青少年模式
+      ├ 964: 青少年守护
+      └ 1028: 我的NFT
+  请选择我的标签页更多服务区域展示的内容。
+
   Mine.iPad.Switch: [我的 iPad版] 启用此标签页自定义功能
   启用后可自定义iPad版我的标签页的服务内容。
 
   Storage: [储存] 配置类型
-      ├ Argument: 优先使用来自 $argument 的配置，$argument 不包含的设置项由 PersistentStore (BoxJs) 提供
+      ├ Argument: 优先使用来自 $argument 的配置，$argument 不包含的设置项由 PersistentStore (BoxJs) 提供，最后使用 database 默认值
       ├ PersistentStore: 只使用 PersistentStore (BoxJs) 提供的配置
       └ database: 只使用由作者的 database.mjs 文件提供的默认配置，其他任何自定义配置不再起作用
-  选择要使用的配置类型。未设置此选项或不通过此选项的旧版本的配置顺序依旧是 PersistentStore (BoxJs) > $argument > database。
+  选择要使用的配置类型。默认配置优先级为 argument > PersistentStore (BoxJs) > database；Stash 的 argument 不可用时会回退到 PersistentStore，再回退到 database。
 
   LogLevel: [调试] 日志等级
       ├ OFF: 关闭
@@ -106,35 +119,35 @@ scriptings:
     match: ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/resource\/show\/tab\/v2\?
     script_url: https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js
     env:
-      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
+      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.More="{{{Mine.More}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_response:
     name: 📺 BiliBili.Enhanced.x.v2.account.mine
     match: ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/account\/mine(\/ipad)?\?
     script_url: https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js
     env:
-      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
+      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.More="{{{Mine.More}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_response:
     name: 📺 BiliBili.Enhanced.x.v2.region.index
     match: ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\?
     script_url: https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js
     env:
-      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
+      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.More="{{{Mine.More}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_response:
     name: 📺 BiliBili.Enhanced.x.v2.channel.region.list
     match: ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/channel\/region\/list\?
     script_url: https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js
     env:
-      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
+      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.More="{{{Mine.More}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_response:
     name: 📺 BiliBili.Enhanced.xlive.app.interface.v2.index.feed
     match: ^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-interface\/v2\/index\/feed
     script_url: https://raw.githubusercontent.com/yrainy-0/dist/master/response.bundle.js
     env:
-      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
+      _compat.$argument: Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.More="{{{Mine.More}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 mitm:
   hostnames:
