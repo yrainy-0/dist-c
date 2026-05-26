@@ -8,7 +8,7 @@ author: |-
 homepage: "https://Enhanced.BiliUniverse.io"
 icon: "https://github.com/BiliUniverse/Enhanced/raw/main/src/assets/icon_rounded.png"
 category: "🪐 BiliUniverse"
-date: "2026-05-26 15:05:45"
+date: "2026-05-26 15:23:45"
 version: ""
 
 http:
@@ -25,6 +25,7 @@ http:
       name: 📺 BiliBili.Enhanced.response
       type: response
       require-body: true
+      argument: Mine.More="407,410,622,1028"
     - match: ^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\?
       name: 📺 BiliBili.Enhanced.response
       type: response
